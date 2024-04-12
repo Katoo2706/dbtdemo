@@ -1,0 +1,27 @@
+dbt_claim_extraction:
+  target: dev
+  outputs:
+    dev:
+      type: snowflake
+      account: hpb34476.us-east-1
+      user: ##PLACEHOLDER##
+      role: ##PLACEHOLDER##
+
+      # Keypair config
+      private_key_path: quan_ngo_key.p8
+      # or private_key instead of private_key_path
+      #private_key_passphrase: [passphrase for the private key, if key is encrypted]
+
+      database: DEV_EP_CODING
+      warehouse: EP_CODING_WH
+      schema: DEV
+      threads: 4
+      client_session_keep_alive: False
+      query_tag: epi_coding
+
+      # optional
+      connect_retries: 0 # default 0
+      connect_timeout: 10 # default: 10
+      retry_on_database_errors: False # default: false
+      retry_all: False  # default: false
+      reuse_connections: False # default: false
